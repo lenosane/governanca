@@ -1,33 +1,66 @@
 <html>
   <head>
+    <style>
+
+      .myNodeClass {
+        font-size: 12px;
+        
+      }
+    </style>
     
-  </head>
 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages:["orgchart"]});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = new google.visualization.DataTable();
+        data.addColumn('string', 'Name');
+        data.addColumn('string', 'Manager');
+        data.addColumn('string', 'ToolTip');
+
+        // For each orgchart box, provide the name, manager, and tooltip to show.
+        data.addRows([
+          [{'v':'PR6', 'f':'Pró-Reitoria de Gestão e Governança'},'', 'PR6'],
+          ['Gabinete', 'PR6', ''],
+          ['Protocolo', 'Gabinete', ''],
+          
+          ['Superintendência Geral de Governança', 'PR6', ''],
+          ['Divisão de Governança', 'Superintendência Geral de Governança', ''],
+          ['Superintendência Geral de Patrimônio', 'PR6', ''],
+          ['Divisão de Gestão Patrimonial', 'Superintendência Geral de Patrimônio', ''],
+          ['Divisão de Gestão de Cessão de Uso', 'Superintendência Geral de Patrimônio', ''],
+          ['Divisão de Contratos Fundacionais', 'Superintendência Geral de Patrimônio', ''],
+          ['Superintendência Geral de Gestão', 'PR6', 'SGGov'],
+          ['Coordenação Geral de Contratos', 'Superintendência Geral de Gestão', ''],
+          ['Divisão de Contratos', 'Coordenação Geral de Contratos', ''],
+          ['Divisão de Fiscalização', 'Coordenação Geral de Contratos', ''],
+          ['Coordenação Geral de Licitações', 'Superintendência Geral de Gestão', ''],
+          ['Divisão de Licitações', 'Coordenação Geral de Licitações', ''],
+          ['Divisão de Materiais', 'Coordenação Geral de Licitações', ''],
+          ['Div. Gestão de Estoque e Mov. de Materiais', 'Coordenação Geral de Licitações', ''],
+          ['Coordenação Geral do Sistema Integrado de Alimentação', 'Superintendência Geral de Gestão', '']
+        ]);
+
+    
+
+        // Create the chart.
+        var chart = new google.visualization.OrgChart(document.getElementById('chart_div'));
+        // Draw the chart, setting the allowHtml option to true for the tooltips.
+        chart.draw(data, {'allowHtml':true});
+        chart.draw(data, {'allowCollapse':true});
+        chart.draw(data, {'selectionColor':'#FFFFF'});
+        chart.draw(data, {'size':'small'});
+      }
+   </script>
+
+
+
+
+
+    </head>
   <body>
-
-    <div class="content">
-        <h1>Responsive Organization Chart</h1>
-        <figure class="org-chart cf">
-          <ul class="administration">
-            <li>                    
-              <ul class="director">
-                <li><a href="#"><span>Director</span></a>     /* Director */
-                  <ul class="subdirector"></ul>
-                  <ul class="departments cf">                                
-                    <li><a href="#"><span>Administration</span></a></li>    /*Administration*/
-
-                    <li class="department dep-a"><a href="#"><span>Department A</span></a></li>
-                    <li class="department dep-b"><a href="#"><span>Department B</span></a></li>
-                    <li class="department dep-c"><a href="#"><span>Department C</span></a> </li>
-                    <li class="department dep-d"><a href="#"><span>Department D</span></a></li>
-                   <li class="department dep-e"><a href="#"><span>Department E</span></a> </li>
-
-                  </ul>
-                </li>
-              </ul>    
-            </li>
-          </ul>            
-        </figure>
-      </div>
-</body>
+    <div id="chart_div" style="height: 800px; width: 200px"></div>
+  </body>
 </html>
